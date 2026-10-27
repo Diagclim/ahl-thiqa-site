@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahl Thiqa – E-mail confirmé</title>
+<style>
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #F4F6F5; color: #1F2D27; }
+  header { background: #2E5E4E; color: #fff; padding: 28px 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 4px 0 0; opacity: .85; }
+  main { max-width: 520px; margin: 0 auto; padding: 20px 16px 40px; }
+  .carte { background: #fff; border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+  .icone { font-size: 52px; text-align: center; margin: 0; }
+  h2 { font-size: 20px; margin: 8px 0; }
+  p { font-size: 16px; line-height: 1.5; margin: 6px 0; }
+  .ar { direction: rtl; text-align: right; font-size: 18px; }
+  .tf { font-size: 18px; }
+  .erreur { display: none; }
+  body.echec .succes { display: none; }
+  body.echec .erreur { display: block; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ahl Thiqa · أهل الثقة</h1>
+  <p>Les gens de confiance</p>
+</header>
+<main>
+  <p class="icone succes">✅</p>
+  <p class="icone erreur">⚠️</p>
+
+  <div class="carte">
+    <h2 class="succes">Votre e-mail est confirmé</h2>
+    <p class="succes">Retournez dans l'application Ahl Thiqa et connectez-vous avec votre e-mail et votre mot de passe.</p>
+    <h2 class="erreur">Ce lien n'est plus valable</h2>
+    <p class="erreur">Le lien a expiré ou a déjà été utilisé. Essayez de vous connecter dans l'application ; si cela ne marche pas, inscrivez-vous de nouveau.</p>
+  </div>
+
+  <div class="carte ar">
+    <h2 class="succes">تم تأكيد بريدك الإلكتروني</h2>
+    <p class="succes">عد إلى تطبيق أهل الثقة وسجّل الدخول ببريدك الإلكتروني وكلمة المرور.</p>
+    <h2 class="erreur">هذا الرابط لم يعد صالحًا</h2>
+    <p class="erreur">انتهت صلاحية الرابط أو استُعمل من قبل. حاول تسجيل الدخول في التطبيق، وإن لم ينجح ذلك، سجّل من جديد.</p>
+  </div>
+
+  <div class="carte">
+    <h2 class="succes">Imayl-ik yettwasentem</h2>
+    <p class="succes">Uɣal ɣer usnas Ahl Thiqa, syin qqen s yimayl-ik d wawal-ik n uɛeddi.</p>
+    <h2 class="erreur">Aseɣwen-a ur yeddi ara</h2>
+    <p class="erreur">Aseɣwen yekfa neɣ yettwaseqdec yakan. Ɛreḍ ad teqqneḍ deg usnas ; ma ur yeddi ara, jerred tikkelt-nniḍen.</p>
+  </div>
+
+  <div class="carte tf">
+    <h2 class="succes">ⵉⵎⴰⵢⵍ-ⵉⴽ ⵢⴻⵜⵜⵡⴰⵙⴻⵏⵜⴻⵎ</h2>
+    <p class="succes">ⵓⵖⴰⵍ ⵖⴻⵔ ⵓⵙⵏⴰⵙ Ahl Thiqa, ⵙⵢⵉⵏ ⵇⵇⴻⵏ ⵙ ⵢⵉⵎⴰⵢⵍ-ⵉⴽ ⴷ ⵡⴰⵡⴰⵍ-ⵉⴽ ⵏ ⵓⵄⴻⴷⴷⵉ.</p>
+    <h2 class="erreur">ⴰⵙⴻⵖⵡⴻⵏ-ⴰ ⵓⵔ ⵢⴻⴷⴷⵉ ⴰⵔⴰ</h2>
+    <p class="erreur">ⴰⵙⴻⵖⵡⴻⵏ ⵢⴻⴽⴼⴰ ⵏⴻⵖ ⵢⴻⵜⵜⵡⴰⵙⴻⵇⴷⴻⵛ ⵢⴰⴽⴰⵏ. ⵄⵔⴻⴹ ⴰⴷ ⵜⴻⵇⵇⵏⴻⴹ ⴷⴻⴳ ⵓⵙⵏⴰⵙ.</p>
+  </div>
+</main>
+<script>
+  // Supabase ajoute "error=..." dans l'adresse quand le lien a expiré
+  if (/error/.test(location.hash + location.search)) document.body.classList.add("echec");
+</script>
+</body>
+</html>
