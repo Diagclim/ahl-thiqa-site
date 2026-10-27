@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahl Thiqa · Nouveau mot de passe</title>
+<style>
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #F4F6F5; color: #1F2D27; }
+  header { background: #2E5E4E; color: #fff; text-align: center; padding: 28px 16px; }
+  header h1 { margin: 0; font-size: 26px; }
+  header p { margin: 6px 0 0; opacity: .9; }
+  main { max-width: 520px; margin: 0 auto; padding: 24px 16px 40px; }
+  .carte { background: #fff; border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+  .carte h2 { margin: 0 0 6px; font-size: 19px; }
+  .carte p { margin: 0; line-height: 1.5; }
+  .ar { direction: rtl; text-align: right; }
+  label { display: block; font-weight: bold; margin: 16px 0 8px; line-height: 1.4; }
+  label small { display: block; font-weight: normal; color: #666; }
+  .champ { display: flex; align-items: center; border: 1px solid #D5DDD9; border-radius: 10px; background: #fff; }
+  .champ input { flex: 1; border: 0; outline: 0; padding: 12px 14px; font-size: 16px; background: transparent; min-width: 0; }
+  .champ button { border: 0; background: none; font-size: 22px; padding: 6px 12px; cursor: pointer; }
+  .bouton { width: 100%; margin-top: 24px; background: #2E5E4E; color: #fff; border: 0; border-radius: 12px; padding: 16px; font-size: 17px; font-weight: bold; cursor: pointer; }
+  .bouton:disabled { opacity: .6; }
+  .erreur { color: #C0392B; font-weight: bold; margin-top: 14px; line-height: 1.5; }
+  .icone { text-align: center; font-size: 56px; margin: 6px 0 16px; }
+  .cache { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ahl Thiqa · أهل الثقة</h1>
+  <p>Les gens de confiance</p>
+</header>
+
+<main>
+  <!-- Chargement -->
+  <div id="chargement" class="carte"><p>…</p></div>
+
+  <!-- Formulaire -->
+  <form id="formulaire" class="carte cache">
+    <h2>Nouveau mot de passe</h2>
+    <p class="ar">كلمة مرور جديدة</p>
+    <p>Awal n uɛeddi amaynut</p>
+
+    <label for="mdp1">Nouveau mot de passe (6 caractères minimum)
+      <small class="ar">كلمة المرور الجديدة (6 أحرف على الأقل)</small>
+      <small>Awal n uɛeddi amaynut (6 n yisekkilen ma drus)</small>
+    </label>
+    <div class="champ">
+      <input id="mdp1" type="password" autocomplete="new-password">
+      <button type="button" data-cible="mdp1">👁️</button>
+    </div>
+
+    <label for="mdp2">Confirmer le mot de passe
+      <small class="ar">تأكيد كلمة المرور</small>
+      <small>Sentem awal n uɛeddi</small>
+    </label>
+    <div class="champ">
+      <input id="mdp2" type="password" autocomplete="new-password">
+      <button type="button" data-cible="mdp2">👁️</button>
+    </div>
+
+    <div id="erreur" class="erreur"></div>
+    <button id="valider" class="bouton" type="submit">Enregistrer · حفظ · Sekles</button>
+  </form>
+
+  <!-- Réussite -->
+  <div id="reussite" class="cache">
+    <div class="icone">✅</div>
+    <div class="carte">
+      <h2>Mot de passe changé</h2>
+      <p>Retournez dans l'application Ahl Thiqa et connectez-vous avec votre nouveau mot de passe.</p>
+    </div>
+    <div class="carte ar">
+      <h2>تم تغيير كلمة المرور</h2>
+      <p>عد إلى تطبيق أهل الثقة وسجّل الدخول بكلمة المرور الجديدة.</p>
+    </div>
+    <div class="carte">
+      <h2>Awal n uɛeddi yettwabeddel</h2>
+      <p>Uɣal ɣer usnas Ahl Thiqa, syin qqen s wawal n uɛeddi amaynut.</p>
+    </div>
+  </div>
+
+  <!-- Lien expiré -->
+  <div id="expire" class="cache">
+    <div class="icone">⚠️</div>
+    <div class="carte">
+      <h2>Lien expiré ou déjà utilisé</h2>
+      <p>Dans l'application, touchez à nouveau « Mot de passe oublié ? » pour recevoir un nouveau lien.</p>
+    </div>
+    <div class="carte ar">
+      <h2>الرابط منتهي أو مستعمل</h2>
+      <p>في التطبيق، اضغط مرة أخرى على «نسيت كلمة المرور؟» لتتلقى رابطًا جديدًا.</p>
+    </div>
+    <div class="carte">
+      <h2>Aseɣwen yemmut neɣ yettwaseqdec</h2>
+      <p>Deg usnas, sit tikkelt nniḍen ɣef « Tettuḍ awal n uɛeddi ? » akken ad d-teṭṭfeḍ aseɣwen amaynut.</p>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://gempxsytonxixanfhjci.supabase.co";
+  const SUPABASE_CLE = "sb_publishable_109cuLypSEkp953MvsV46Q_0rT760kX";
+
+  const client = supabase.createClient(SUPABASE_URL, SUPABASE_CLE, {
+    auth: { detectSessionInUrl: true, persistSession: false, flowType: "implicit" },
+  });
+
+  const $ = (id) => document.getElementById(id);
+  function afficher(id) {
+    ["chargement", "formulaire", "reussite", "expire"].forEach((x) => $(x).classList.add("cache"));
+    $(id).classList.remove("cache");
+  }
+
+  // Petit œil
+  document.querySelectorAll("[data-cible]").forEach((b) => {
+    b.addEventListener("click", () => {
+      const champ = $(b.dataset.cible);
+      const visible = champ.type === "text";
+      champ.type = visible ? "password" : "text";
+      b.textContent = visible ? "👁️" : "🙈";
+    });
+  });
+
+  // Le lien de l'e-mail contient une erreur ? (lien expiré)
+  const infos = new URLSearchParams(location.hash.slice(1) + "&" + location.search.slice(1));
+  const erreurLien = infos.get("error") || infos.get("error_code");
+
+  let pret = false;
+  client.auth.onAuthStateChange((evenement, session) => {
+    if (session && !pret) {
+      pret = true;
+      history.replaceState(null, "", location.pathname); // enlève le code de l'adresse
+      afficher("formulaire");
+    }
+  });
+
+  setTimeout(async () => {
+    if (pret) return;
+    const { data } = await client.auth.getSession();
+    if (data.session && !erreurLien) {
+      pret = true;
+      history.replaceState(null, "", location.pathname);
+      afficher("formulaire");
+    } else {
+      afficher("expire");
+    }
+  }, 2500);
+
+  $("formulaire").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const mdp1 = $("mdp1").value;
+    const mdp2 = $("mdp2").value;
+    $("erreur").textContent = "";
+    if (mdp1.length < 6) {
+      $("erreur").innerHTML = "Il faut au moins 6 caractères.<br><span dir='rtl'>يجب 6 أحرف على الأقل.</span><br>Ilaq ma drus 6 n yisekkilen.";
+      return;
+    }
+    if (mdp1 !== mdp2) {
+      $("erreur").innerHTML = "Les deux mots de passe sont différents.<br><span dir='rtl'>كلمتا المرور غير متطابقتين.</span><br>Awalen n uɛeddi mxallafen.";
+      return;
+    }
+    $("valider").disabled = true;
+    const { error } = await client.auth.updateUser({ password: mdp1 });
+    $("valider").disabled = false;
+    if (error) {
+      $("erreur").textContent = error.message;
+      return;
+    }
+    await client.auth.signOut();
+    afficher("reussite");
+  });
+</script>
+</body>
+</html>
